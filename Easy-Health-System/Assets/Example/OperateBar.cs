@@ -55,22 +55,22 @@ namespace Hypnagogia.Example {
         {
             damageInput.text = 10.ToString();
             healInput.text = 10.ToString();
-            maxValueInput.text = 200f.ToString();
+            maxValueInput.text = maxBarValue.ToString();
             valuePerLineInput.text = 50f.ToString();
         }
 
         [UsedImplicitly]
         public void Damage() {
-            var damage = 10;
-            int.TryParse(damageInput.text, out damage);
-            BarValue -= damage;
+            int damage;
+            if (int.TryParse(damageInput.text, out damage))
+                BarValue -= damage;
         }
 
         [UsedImplicitly]
         public void Heal() {
-            var heal = 10;
-            int.TryParse(healInput.text, out heal);
-            BarValue += heal;
+            int heal;
+            if (int.TryParse(healInput.text, out heal))
+                BarValue += heal;
         }
     }
 }
