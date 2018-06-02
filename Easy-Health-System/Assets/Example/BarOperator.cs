@@ -5,13 +5,12 @@ using UnityEngine.Events;
 
 namespace Hypnagogia.Example
 {
-    public class OperateBar : MonoBehaviour
+    public class BarOperator : MonoBehaviour
     {
         [SerializeField] MovingBar bar;
 
         UnityAction<float> onBarValueChanged;
         IHealthUpdate target;
-
 
         void OnValidate()
         {
@@ -45,7 +44,9 @@ namespace Hypnagogia.Example
             bar.Init(transform, ref onBarValueChanged, maxHealth, Color.green);
         }
 
-
-
+        public void UpdateValuePerLine(int valuePerLine)
+        {
+            bar.UpdateValuePerLine(valuePerLine);
+        }
     }
 }

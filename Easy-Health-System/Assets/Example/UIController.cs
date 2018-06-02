@@ -8,6 +8,7 @@ namespace Hypnagogia.Example
     public class UIController : MonoBehaviour
     {
         [SerializeField] Health health;
+        [SerializeField] BarOperator barOperator;
         
         [SerializeField] InputField maxHealthValueInput;
         [SerializeField] InputField valuePerLineInput;
@@ -53,6 +54,14 @@ namespace Hypnagogia.Example
             int heal;
             if (int.TryParse(healInput.text, out heal))
                 health.UpdateHealth(heal);
+        }
+
+        [UsedImplicitly]
+        public void UpdateLines()
+        {
+            int valuePerLine;
+            if (int.TryParse(valuePerLineInput.text, out valuePerLine))
+                barOperator.UpdateValuePerLine(valuePerLine);
         }
     }
 }
