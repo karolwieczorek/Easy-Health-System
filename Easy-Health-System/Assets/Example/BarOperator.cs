@@ -11,7 +11,7 @@ namespace Hypnagogia.Example
         [SerializeField] MovingBar bar;
         [SerializeField] BarsAssetsData barsAssetsData;
 
-        UnityAction<float> onBarValueChanged;
+        UnityAction<float> onBarValueChanged = delegate { };
         IHealthUpdate target;
 
         void OnValidate()
@@ -44,17 +44,8 @@ namespace Hypnagogia.Example
         public void InitBar()
         {
             if (bar == null)
-                bar = CreateMovingBar();
+                bar = BarsFactory.CreateMovingBar(barsAssetsData);
             bar.Init(transform, ref onBarValueChanged, maxHealth, Color.green);
-        }
-
-        Canvas parentCanvas;
-        MovingBar CreateMovingBar()
-        {
-            if (parentCanvas == null)
-                parentCanvas = Instantiate(barsAssetsData.screenSpaceCanvasPrefab);
-
-            return Instantiate(barsAssetsData.barPrefab, parentCanvas.transform) as MovingBar;
         }
 
         public void UpdateValuePerLine(int valuePerLine)
