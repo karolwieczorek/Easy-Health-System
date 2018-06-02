@@ -23,6 +23,9 @@ namespace Hypnagogia.Bar.Code
 
         void Update()
         {
+            if (target == null)
+                return;
+            
             Vector3 barPos = Camera.main.WorldToScreenPoint(target.position + offset);
             transform.position = barPos;
         }

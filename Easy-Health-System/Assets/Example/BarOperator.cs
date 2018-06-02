@@ -1,4 +1,5 @@
 ﻿using Hypnagogia.Bar.Code;
+using Hypnagogia.Bar.Code.BarsFactory;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,6 +9,7 @@ namespace Hypnagogia.Example
     public class BarOperator : MonoBehaviour
     {
         [SerializeField] MovingBar bar;
+        [SerializeField] BarsAssetsData barsAssetsData;
 
         UnityAction<float> onBarValueChanged;
         IHealthUpdate target;
@@ -41,7 +43,18 @@ namespace Hypnagogia.Example
         [UsedImplicitly]
         public void InitBar()
         {
+            if (bar == null)
+                bar = CreateMovingBar();
             bar.Init(transform, ref onBarValueChanged, maxHealth, Color.green);
+        }
+
+        Canvas parentCanvas;
+        MovingBar CreateMovingBar()
+        {
+            if (parentCanvas == null)
+                parentCanvas = Instantiate(barsAssetsData.screenSpaceCanvasPrefab);
+
+            return Instantiate(barsAssetsData.barPrefab, parentCanvas.transform) as MovingBar;
         }
 
         public void UpdateValuePerLine(int valuePerLine)

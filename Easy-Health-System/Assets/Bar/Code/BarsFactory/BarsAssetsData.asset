@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26dfa42c092f8774c8db162a97c29b0f, type: 3}
+  m_Name: BarsAssetsData
+  m_EditorClassIdentifier: 
+  screenSpaceCanvasPrefab: {fileID: 223092513508465700, guid: 110e82a73d46e444d91990967c1a6c4d,
+    type: 2}
+  worldSpaceCanvasPrefab: {fileID: 0}
+  barPrefab: {fileID: 114734196674089956, guid: fdc17162c45320941942442c782978da,
+    type: 2}
