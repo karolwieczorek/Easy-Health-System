@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114719461781300120}
   - component: {fileID: 114148878094530306}
   m_Layer: 5
-  m_Name: BarsScreenCanvas
+  m_Name: BarsScreenSpaceCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

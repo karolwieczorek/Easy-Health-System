@@ -27,9 +27,15 @@ namespace EasyHealthSystem
         {
             if (target == null)
                 return;
-            
-            Vector3 barPos = Camera.main.WorldToScreenPoint(target.position + offset);
-            transform.position = barPos;
+
+            var position = target.position + offset;
+            if (GetComponentInParent<Canvas>().renderMode == RenderMode.WorldSpace)
+                transform.position = position;
+            else
+            {
+                Vector3 barPos = Camera.main.WorldToScreenPoint(position);
+                transform.position = barPos;
+            }
         }
     }
 }

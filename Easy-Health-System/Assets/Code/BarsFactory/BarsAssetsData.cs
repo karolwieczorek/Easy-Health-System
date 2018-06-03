@@ -6,8 +6,8 @@ namespace EasyHealthSystem.BarsFactory
     [CreateAssetMenu(fileName = "BarsAssetsData", menuName = "Custom/BarsAssetsData", order = 1)]
     public class BarsAssetsData : ScriptableObject
     {
-        public Canvas screenSpaceCanvasPrefab;
-        public Canvas worldSpaceCanvasPrefab;
+        public RectTransform screenSpaceCanvasPrefab;
+        public RectTransform worldSpaceCanvasPrefab;
 
         public List<Bar> barsPrefabs;
     }

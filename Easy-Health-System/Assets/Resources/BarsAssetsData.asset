@@ -11,9 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26dfa42c092f8774c8db162a97c29b0f, type: 3}
   m_Name: BarsAssetsData
   m_EditorClassIdentifier: 
-  screenSpaceCanvasPrefab: {fileID: 223092513508465700, guid: 110e82a73d46e444d91990967c1a6c4d,
+  screenSpaceCanvasPrefab: {fileID: 224657086671073560, guid: 110e82a73d46e444d91990967c1a6c4d,
     type: 2}
-  worldSpaceCanvasPrefab: {fileID: 0}
+  worldSpaceCanvasPrefab: {fileID: 224657086671073560, guid: a5e7a5980f76f3b459701b8c72c22df7,
+    type: 2}
   barsPrefabs:
   - {fileID: 114734196674089956, guid: fdc17162c45320941942442c782978da, type: 2}
   - {fileID: 114614677454998356, guid: e9c33c74f72d73040b8c5fbdd4e66a63, type: 2}
