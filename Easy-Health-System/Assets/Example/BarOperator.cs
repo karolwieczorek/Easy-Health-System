@@ -8,6 +8,7 @@ namespace EasyHealthSystem.Example
     public class BarOperator : MonoBehaviour
     {
         public Bar barSource;
+        public bool followTarget; 
         public RectTransform parentRectTransformSource;
         public BarsAssetsData barsAssetsData;
 
@@ -15,11 +16,11 @@ namespace EasyHealthSystem.Example
 
         UnityAction<float> onBarValueChanged = delegate { };
         IHealthUpdate target;
-        
-        MovingBar bar;
-        RectTransform parent;
-        
-        MovingBar TargetBar
+
+        Bar bar;
+        Bar parent;
+
+        Bar TargetBar
         {
             get
             {
@@ -41,8 +42,6 @@ namespace EasyHealthSystem.Example
             return barSource.gameObject.IsPrefab();
         }
 
-        
-
         void Start()
         {
             InitBar();
@@ -62,10 +61,36 @@ namespace EasyHealthSystem.Example
             onBarValueChanged(health);
         }
 
+        void LateUpdate()
+        {
+            if (followTarget)
+                FollowTarget();
+        }
+
+        void FollowTarget()
+        {
+            if (bar == null)
+                return;
+
+            var offset = Vector3.zero;
+            if (positionData != null)
+                offset = positionData.anchoredPosition;
+
+            var position = transform.position + offset;
+
+            if (bar.GetComponentInParent<Canvas>().renderMode == RenderMode.WorldSpace)
+                bar.transform.position = position;
+            else
+            {
+                Vector3 barPos = Camera.main.WorldToScreenPoint(position);
+                bar.transform.position = barPos;
+            }
+        }
+
         [UsedImplicitly]
         public void InitBar()
         {
-            TargetBar.Init(transform, ref onBarValueChanged, maxHealth, Color.green);
+            TargetBar.Init(maxHealth, ref onBarValueChanged, Color.green);
             if (positionData != null)
                 TargetBar.SetupSize(positionData);
         }

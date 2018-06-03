@@ -8,29 +8,10 @@ namespace EasyHealthSystem.Example.Editor
     {
         BarRectTransformData targetObject;
 
-        RectTransform rectTransform;
-        GameObject hidenObject;
-        UnityEditor.Editor transformEditor; 
-
         void OnEnable()
         {
             targetObject = (BarRectTransformData)target;
             
-            hidenObject = new GameObject("hidenCanvas");
-            hidenObject.hideFlags = HideFlags.DontSave | HideFlags.HideInHierarchy;
-            
-            
-            hidenObject.AddComponent<Canvas>();
-            var go = new GameObject("rect Transform", typeof(RectTransform));
-            go.transform.SetParent(hidenObject.transform);
-            
-            rectTransform = go.GetComponent<RectTransform>();
-            
-        }
-
-        void OnDisable()
-        {
-            DestroyImmediate(hidenObject);
         }
 
         public override void OnInspectorGUI()
@@ -39,21 +20,51 @@ namespace EasyHealthSystem.Example.Editor
             
             EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
 
-            if (rectTransform != null)
+            if (RectTransformEditorProvider.TransformEditor != null)
             {
-                transformEditor = CreateEditor(rectTransform);
-            }
-
-            if (transformEditor != null)
-            {
-                transformEditor.OnInspectorGUI();
+                RectTransformEditorProvider.TransformEditor.OnInspectorGUI();
                 if (GUI.changed)
                 {
                     EditorUtility.SetDirty(target);
                 }
             }
         }
+    }
 
-        
+    internal static class RectTransformEditorProvider
+    {
+        static Transform rectTransform;
+        static GameObject hidenObject;
+        static UnityEditor.Editor transformEditor;
+
+        public static UnityEditor.Editor TransformEditor
+        {
+            get
+            {
+                if (transformEditor == null)
+                    Create();
+                return transformEditor;
+            }
+        }
+
+        public static void Create()
+        {
+            var hideFlags = HideFlags.DontSave | HideFlags.HideInHierarchy; 
+            
+            hidenObject =
+                EditorUtility.CreateGameObjectWithHideFlags("hidenCanvas", hideFlags);
+            
+            
+            hidenObject.AddComponent<Canvas>();
+            var go = EditorUtility.CreateGameObjectWithHideFlags("rect Transform", hideFlags, typeof(RectTransform));
+            go.transform.SetParent(hidenObject.transform);
+            
+            rectTransform = go.GetComponent<RectTransform>();
+            
+            if (rectTransform != null)
+            {
+                transformEditor = UnityEditor.Editor.CreateEditor(rectTransform);
+            }
+        }
     }
 }

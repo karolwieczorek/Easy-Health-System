@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de3e61081f98414c9f2b86afd60a9b06, type: 3}
   m_Name: BarRectTransformData
   m_EditorClassIdentifier: 
-  anchoredPosition: {x: 0, y: 0, z: 0}
+  anchoredPosition: {x: 0, y: 1, z: 0}
   sizeDelta: {x: 144, y: 16}
   anchorsMin: {x: 0.5, y: 0.5}
   anchorsMax: {x: 0.5, y: 0.5}
