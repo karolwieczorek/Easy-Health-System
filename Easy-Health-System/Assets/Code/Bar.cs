@@ -26,6 +26,11 @@ namespace EasyHealthSystem
             onValueChange += UpdateValue;
         }
 
+        public void Destroy()
+        {
+            Destroy(gameObject);
+        }
+
         void Init(float maxValue, Color? color)
         {
             currentValue = maxValue;
@@ -58,10 +63,6 @@ namespace EasyHealthSystem
         void UpdateValue(float value)
         {
             Debug.LogFormat("update value: {0}", value);
-            if (value <= 0)
-            {
-                Destroy(gameObject);
-            }
 
             this.currentValue = value;
             ResizeBar();
