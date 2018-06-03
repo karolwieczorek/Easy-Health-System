@@ -2,11 +2,20 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Hypnagogia.Bar.Code
+namespace EasyHealthSystem
 {
     public class Health : MonoBehaviour, IHealthUpdate
     {
-        public event UnityAction<float, float> HealthUpdated = delegate { };
+        public event UnityAction<float, float> healthUpdated = delegate { };
+        public event UnityAction<float, float> HealthUpdated
+        {
+            add
+            {
+                value(healthValue, maxHealthValue);
+                healthUpdated += value;
+            }
+            remove { healthUpdated -= value; }
+        }
         
         float healthValue = 100;
         float maxHealthValue = 100;
@@ -15,7 +24,7 @@ namespace Hypnagogia.Bar.Code
             get {return healthValue;}
             set {
                 healthValue = Mathf.Clamp(value, 0, maxHealthValue);
-                HealthUpdated(healthValue, maxHealthValue);
+                healthUpdated(healthValue, maxHealthValue);
             }
         }
 
@@ -29,14 +38,14 @@ namespace Hypnagogia.Bar.Code
         public void UpdateMaxHealth(float value) 
         {
             maxHealthValue += value;
-            HealthUpdated(healthValue, maxHealthValue);
+            healthUpdated(healthValue, maxHealthValue);
         }
         
         [UsedImplicitly]
         public void SetMaxHealth(float maxHealth) 
         {
             maxHealthValue = maxHealth;
-            HealthUpdated(healthValue, maxHealthValue);
+            healthUpdated(healthValue, maxHealthValue);
         }
 
         [ContextMenu("Heal 10 health")]

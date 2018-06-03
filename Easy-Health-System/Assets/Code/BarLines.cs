@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Hypnagogia.Bar.Code {
+namespace EasyHealthSystem {
     public class BarLines : MonoBehaviour {
         public int widht = 1;
 

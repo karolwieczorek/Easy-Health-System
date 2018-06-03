@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Hypnagogia.Bar.Code {
+namespace EasyHealthSystem {
 
     // DOIT StaticBar / DynamicBar
     public class HealthBar : MonoBehaviour {

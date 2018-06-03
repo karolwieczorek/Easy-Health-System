@@ -1,9 +1,8 @@
-﻿using Hypnagogia.Bar.Code;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Hypnagogia.Example
+namespace EasyHealthSystem.Example
 {
     public class UIController : MonoBehaviour
     {

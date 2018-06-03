@@ -1,16 +1,32 @@
-﻿using Hypnagogia.Bar.Code;
+﻿using EasyHealthSystem.BarsFactory;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Hypnagogia.Example
+namespace EasyHealthSystem.Example
 {
     public class BarOperator : MonoBehaviour
     {
-        [SerializeField] MovingBar bar;
+        public Bar barSource;
+        public RectTransform parentRectTransformSource;
+        public BarsAssetsData barsAssetsData;
 
-        UnityAction<float> onBarValueChanged;
+        UnityAction<float> onBarValueChanged = delegate { };
         IHealthUpdate target;
+        
+        MovingBar bar;
+        RectTransform parent;
+        
+        MovingBar TargetBar
+        {
+            get
+            {
+                if (bar == null)
+                    bar = CreateBar();
+                return bar;
+            }
+            set { bar = value; }
+        }
 
         void OnValidate()
         {
@@ -18,12 +34,18 @@ namespace Hypnagogia.Example
                 Debug.LogErrorFormat(this, "Missing IHealthUpdate");
         }
 
+        public bool IsBarPrefab()
+        {
+            return barSource.gameObject.IsPrefab();
+        }
+
+        
+
         void Start()
         {
+            InitBar();
             target = GetComponent<IHealthUpdate>();
             target.HealthUpdated += HealthUpdated;
-
-            InitBar();
         }
 
         float maxHealth = 0;
@@ -32,7 +54,7 @@ namespace Hypnagogia.Example
             if (Mathf.Approximately(this.maxHealth, maxHealth) == false)
             {
                 this.maxHealth = maxHealth;
-                bar.Init(transform, ref onBarValueChanged, maxHealth, Color.green);
+                TargetBar.Init(transform, ref onBarValueChanged, maxHealth, Color.green);
             }
 
             onBarValueChanged(health);
@@ -41,12 +63,20 @@ namespace Hypnagogia.Example
         [UsedImplicitly]
         public void InitBar()
         {
-            bar.Init(transform, ref onBarValueChanged, maxHealth, Color.green);
+            TargetBar.Init(transform, ref onBarValueChanged, maxHealth, Color.green);
+        }
+
+        MovingBar CreateBar()
+        {
+            if (barSource == null)
+                return null;
+
+            return BarsFactory.BarsFactory.CreateMovingBar(parentRectTransformSource, barSource);
         }
 
         public void UpdateValuePerLine(int valuePerLine)
         {
-            bar.UpdateValuePerLine(valuePerLine);
+            TargetBar.UpdateValuePerLine(valuePerLine);
         }
     }
 }

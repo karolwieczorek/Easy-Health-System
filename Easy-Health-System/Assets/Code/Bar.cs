@@ -2,17 +2,17 @@
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Hypnagogia.Bar.Code
+namespace EasyHealthSystem
 {
     public class Bar : MonoBehaviour
     {
         [SerializeField] Image barImage;
         [SerializeField] BarLines barLines;
+        [SerializeField] float valuePerLine = 100;
 
         float currentValue;
         float maxValue;
 
-        [SerializeField] float valuePerLine = 100;
 
         public void Init(int maxValue, ref UnityAction<int> onValueChange, Color? color = null)
         {
@@ -24,6 +24,11 @@ namespace Hypnagogia.Bar.Code
         {
             Init(maxValue, color);
             onValueChange += UpdateValue;
+        }
+
+        public void Destroy()
+        {
+            Destroy(gameObject);
         }
 
         void Init(float maxValue, Color? color)
@@ -58,10 +63,6 @@ namespace Hypnagogia.Bar.Code
         void UpdateValue(float value)
         {
             Debug.LogFormat("update value: {0}", value);
-            if (value <= 0)
-            {
-                Destroy(gameObject);
-            }
 
             this.currentValue = value;
             ResizeBar();
