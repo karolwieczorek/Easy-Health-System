@@ -24,7 +24,7 @@ namespace EasyHealthSystem.Example {
             Move();
             if (target.position == nextPoint.position)
                 nextPoint = GetNextPoint();
-        } 
+        }
 
         private void Move()
         {

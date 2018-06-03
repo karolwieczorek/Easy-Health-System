@@ -41,8 +41,6 @@ namespace EasyHealthSystem.Example.Editor
         }
 
         bool foldout = true;
-        
-        
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();

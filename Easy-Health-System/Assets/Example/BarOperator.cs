@@ -11,6 +11,8 @@ namespace EasyHealthSystem.Example
         public RectTransform parentRectTransformSource;
         public BarsAssetsData barsAssetsData;
 
+        [SerializeField] BarRectTransformData positionData;
+
         UnityAction<float> onBarValueChanged = delegate { };
         IHealthUpdate target;
         
@@ -54,7 +56,7 @@ namespace EasyHealthSystem.Example
             if (Mathf.Approximately(this.maxHealth, maxHealth) == false)
             {
                 this.maxHealth = maxHealth;
-                TargetBar.Init(transform, ref onBarValueChanged, maxHealth, Color.green);
+                InitBar();
             }
 
             onBarValueChanged(health);
@@ -64,6 +66,8 @@ namespace EasyHealthSystem.Example
         public void InitBar()
         {
             TargetBar.Init(transform, ref onBarValueChanged, maxHealth, Color.green);
+            if (positionData != null)
+                TargetBar.SetupSize(positionData);
         }
 
         MovingBar CreateBar()

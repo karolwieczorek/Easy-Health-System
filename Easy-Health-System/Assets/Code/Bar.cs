@@ -67,5 +67,10 @@ namespace EasyHealthSystem
             this.currentValue = value;
             ResizeBar();
         }
+        
+        public void SetupSize(BarRectTransformData positionData)
+        {
+            positionData.SetTransform(GetComponent<RectTransform>());
+        }
     }
 }
