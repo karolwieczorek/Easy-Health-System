@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Hypnagogia.Bar.Code.BarsFactory
+namespace EasyHealthSystem.BarsFactory
 {
     public static class BarsFactory
     {

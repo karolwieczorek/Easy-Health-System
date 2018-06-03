@@ -1,10 +1,9 @@
-﻿using Hypnagogia.Bar.Code;
-using Hypnagogia.Bar.Code.BarsFactory;
+﻿using EasyHealthSystem.BarsFactory;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Hypnagogia.Example
+namespace EasyHealthSystem.Example
 {
     public class BarOperator : MonoBehaviour
     {
@@ -44,7 +43,7 @@ namespace Hypnagogia.Example
         public void InitBar()
         {
             if (bar == null)
-                bar = BarsFactory.CreateMovingBar(barsAssetsData);
+                bar = BarsFactory.BarsFactory.CreateMovingBar(barsAssetsData);
             bar.Init(transform, ref onBarValueChanged, maxHealth, Color.green);
         }
 

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Hypnagogia.Bar.Code
+namespace EasyHealthSystem
 {
     public class Health : MonoBehaviour, IHealthUpdate
     {

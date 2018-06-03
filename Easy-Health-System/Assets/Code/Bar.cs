@@ -2,17 +2,17 @@
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Hypnagogia.Bar.Code
+namespace EasyHealthSystem
 {
     public class Bar : MonoBehaviour
     {
         [SerializeField] Image barImage;
         [SerializeField] BarLines barLines;
+        [SerializeField] float valuePerLine = 100;
 
         float currentValue;
         float maxValue;
 
-        [SerializeField] float valuePerLine = 100;
 
         public void Init(int maxValue, ref UnityAction<int> onValueChange, Color? color = null)
         {

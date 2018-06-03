@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Hypnagogia.Example {
+namespace EasyHealthSystem.Example {
     public class FollowPoints : MonoBehaviour {
 
         [SerializeField] Transform target;
