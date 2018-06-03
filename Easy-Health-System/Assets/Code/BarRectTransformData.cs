@@ -16,6 +16,20 @@ namespace EasyHealthSystem
         public Vector3 rotationEuler;
         public Vector3 localScale;
 
+        public bool useColor;
+        public Color barColor;
+
+        public Color? Color
+        {
+            get
+            {
+                if (useColor)
+                    return barColor;
+                return null;
+            }
+        }
+        
+
         public void SetTransform(RectTransform rectTransform)
         {
             rectTransform.anchoredPosition3D = anchoredPosition;
@@ -25,6 +39,17 @@ namespace EasyHealthSystem
             rectTransform.pivot = pivot;
             rectTransform.rotation = Quaternion.Euler(rotationEuler);
             rectTransform.localScale = localScale;
+        }
+
+        public void Load(RectTransform rectTransform)
+        {
+            anchoredPosition = rectTransform.anchoredPosition3D;
+            sizeDelta = rectTransform.sizeDelta;
+            anchorsMin = rectTransform.anchorMin;
+            anchorsMax = rectTransform.anchorMax;
+            pivot = rectTransform.pivot;
+            rotationEuler = rectTransform.rotation.eulerAngles;
+            localScale = rectTransform.localScale;
         }
     }
 }

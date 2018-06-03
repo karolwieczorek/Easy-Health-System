@@ -68,9 +68,11 @@ namespace EasyHealthSystem
             ResizeBar();
         }
         
-        public void SetupSize(BarRectTransformData positionData)
+        public void SetupData(BarRectTransformData positionData)
         {
             positionData.SetTransform(GetComponent<RectTransform>());
+            if (positionData.Color.HasValue)
+            barImage.color = positionData.Color.Value;
         }
     }
 }

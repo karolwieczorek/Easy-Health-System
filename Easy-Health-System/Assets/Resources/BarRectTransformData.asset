@@ -11,10 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de3e61081f98414c9f2b86afd60a9b06, type: 3}
   m_Name: BarRectTransformData
   m_EditorClassIdentifier: 
-  anchoredPosition: {x: 0, y: 1, z: 0}
-  sizeDelta: {x: 144, y: 16}
-  anchorsMin: {x: 0.5, y: 0.5}
-  anchorsMax: {x: 0.5, y: 0.5}
+  anchoredPosition: {x: 0, y: 20, z: 0}
+  sizeDelta: {x: 350, y: 20}
+  anchorsMin: {x: 0.5, y: 0}
+  anchorsMax: {x: 0.5, y: 0}
   pivot: {x: 0.5, y: 0.5}
-  rotationEuler: {x: 0, y: 0, z: 0}
+  rotationEuler: {x: -0, y: 0, z: 0}
   localScale: {x: 1, y: 1, z: 1}
+  useColor: 1
+  barColor: {r: 0.20960999, g: 1, b: 0, a: 1}

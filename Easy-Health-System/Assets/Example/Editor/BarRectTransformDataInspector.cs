@@ -20,11 +20,15 @@ namespace EasyHealthSystem.Example.Editor
             
             EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
 
-            if (RectTransformEditorProvider.TransformEditor != null)
+            if (RectTransformEditorProvider.rectTransform == null)
+                RectTransformEditorProvider.Create(targetObject);
+            
+            if (RectTransformEditorProvider.rectTransform != null)
             {
                 RectTransformEditorProvider.TransformEditor.OnInspectorGUI();
                 if (GUI.changed)
                 {
+                    targetObject.Load(RectTransformEditorProvider.rectTransform);
                     EditorUtility.SetDirty(target);
                 }
             }
@@ -33,7 +37,7 @@ namespace EasyHealthSystem.Example.Editor
 
     internal static class RectTransformEditorProvider
     {
-        static Transform rectTransform;
+        public static RectTransform rectTransform;
         static GameObject hidenObject;
         static UnityEditor.Editor transformEditor;
 
@@ -65,6 +69,12 @@ namespace EasyHealthSystem.Example.Editor
             {
                 transformEditor = UnityEditor.Editor.CreateEditor(rectTransform);
             }
+        }
+
+        public static void Create(BarRectTransformData data)
+        {
+            Create();
+            data.SetTransform(rectTransform);
         }
     }
 }

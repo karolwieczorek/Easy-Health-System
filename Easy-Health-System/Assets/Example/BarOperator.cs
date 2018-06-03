@@ -13,6 +13,7 @@ namespace EasyHealthSystem.Example
         public BarsAssetsData barsAssetsData;
 
         [SerializeField] BarRectTransformData positionData;
+        public bool updateRectData;
 
         UnityAction<float> onBarValueChanged = delegate { };
         IHealthUpdate target;
@@ -63,6 +64,9 @@ namespace EasyHealthSystem.Example
 
         void LateUpdate()
         {
+            if (updateRectData && positionData != null)
+                TargetBar.SetupData(positionData);
+            
             if (followTarget)
                 FollowTarget();
         }
@@ -92,7 +96,7 @@ namespace EasyHealthSystem.Example
         {
             TargetBar.Init(maxHealth, ref onBarValueChanged, Color.green);
             if (positionData != null)
-                TargetBar.SetupSize(positionData);
+                TargetBar.SetupData(positionData);
         }
 
         MovingBar CreateBar()
