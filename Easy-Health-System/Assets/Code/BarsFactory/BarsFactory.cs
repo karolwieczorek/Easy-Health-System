@@ -6,12 +6,12 @@ namespace EasyHealthSystem.BarsFactory
     {
         static Canvas parentSceneCanvas;
         
-        public static MovingBar CreateMovingBar(BarsAssetsData barsAssetsData)
+        public static MovingBar CreateMovingBar(BarsAssetsData barsAssetsData, Bar barPrefab)
         {
             if (parentSceneCanvas == null)
                 parentSceneCanvas = Object.Instantiate(barsAssetsData.screenSpaceCanvasPrefab);
 
-            return Object.Instantiate(barsAssetsData.barPrefab, parentSceneCanvas.transform) as MovingBar;
+            return Object.Instantiate(barPrefab, parentSceneCanvas.transform) as MovingBar;
         }
     }
 }

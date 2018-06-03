@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace EasyHealthSystem.BarsFactory
 {    
@@ -8,6 +9,6 @@ namespace EasyHealthSystem.BarsFactory
         public Canvas screenSpaceCanvasPrefab;
         public Canvas worldSpaceCanvasPrefab;
 
-        public Bar barPrefab;
+        public List<Bar> barsPrefabs;
     }
 }

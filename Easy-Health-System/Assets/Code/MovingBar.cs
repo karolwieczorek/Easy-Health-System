@@ -16,7 +16,6 @@ namespace EasyHealthSystem
             this.target = target;
         }
 
-        
         /// float
         public void Init(Transform target, ref UnityAction<float> onValueChange, float maxHealth, Color? color = null)
         {
