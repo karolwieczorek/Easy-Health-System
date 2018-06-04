@@ -29,7 +29,6 @@ namespace EasyHealthSystem.Example
                     bar = CreateBar();
                 return bar;
             }
-            set { bar = value; }
         }
 
         void OnValidate()
@@ -50,7 +49,7 @@ namespace EasyHealthSystem.Example
             target.HealthUpdated += HealthUpdated;
         }
 
-        float maxHealth = 0;
+        float maxHealth;
         void HealthUpdated(float health, float maxHealth)
         {
             if (Mathf.Approximately(this.maxHealth, maxHealth) == false)

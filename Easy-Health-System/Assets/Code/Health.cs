@@ -6,15 +6,15 @@ namespace EasyHealthSystem
 {
     public class Health : MonoBehaviour, IHealthUpdate
     {
-        public event UnityAction<float, float> healthUpdated = delegate { };
+        event UnityAction<float, float> HealthUpdatedEvent = delegate { };
         public event UnityAction<float, float> HealthUpdated
         {
             add
             {
                 value(healthValue, maxHealthValue);
-                healthUpdated += value;
+                HealthUpdatedEvent += value;
             }
-            remove { healthUpdated -= value; }
+            remove { HealthUpdatedEvent -= value; }
         }
         
         float healthValue = 100;
@@ -24,7 +24,7 @@ namespace EasyHealthSystem
             get {return healthValue;}
             set {
                 healthValue = Mathf.Clamp(value, 0, maxHealthValue);
-                healthUpdated(healthValue, maxHealthValue);
+                HealthUpdatedEvent(healthValue, maxHealthValue);
             }
         }
 
@@ -38,14 +38,14 @@ namespace EasyHealthSystem
         public void UpdateMaxHealth(float value) 
         {
             maxHealthValue += value;
-            healthUpdated(healthValue, maxHealthValue);
+            HealthUpdatedEvent(healthValue, maxHealthValue);
         }
         
         [UsedImplicitly]
         public void SetMaxHealth(float maxHealth) 
         {
             maxHealthValue = maxHealth;
-            healthUpdated(healthValue, maxHealthValue);
+            HealthUpdatedEvent(healthValue, maxHealthValue);
         }
 
         [ContextMenu("Heal 10 health")]

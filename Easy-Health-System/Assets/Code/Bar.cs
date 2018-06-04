@@ -64,7 +64,7 @@ namespace EasyHealthSystem
         {
             Debug.LogFormat("update value: {0}", value);
 
-            this.currentValue = value;
+            currentValue = value;
             ResizeBar();
         }
         
