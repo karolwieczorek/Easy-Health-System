@@ -8,7 +8,6 @@ namespace EasyHealthSystem.Example
 
         [SerializeField] Transform target;
         [SerializeField] float speed = 1f;
-        [SerializeField] HealthBar speed2;
 
         List<Transform> points;
 
@@ -20,8 +19,6 @@ namespace EasyHealthSystem.Example
         }
 
         void Update() {
-            if (speed2.name == "wow")
-                Debug.Log("wow");
             if (points.Count < 2)
                 return; 
 
