@@ -1370,10 +1370,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4d2f77e24abb84fbc85f4a1e8a2bd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barSource: {fileID: 114734196674089956, guid: fdc17162c45320941942442c782978da,
+  barSource: {fileID: 114614677454998356, guid: e9c33c74f72d73040b8c5fbdd4e66a63,
     type: 2}
-  parentRectTransformSource: {fileID: 1529451732}
+  followTarget: 0
+  parentRectTransformSource: {fileID: 224657086671073560, guid: 110e82a73d46e444d91990967c1a6c4d,
+    type: 2}
   barsAssetsData: {fileID: 11400000, guid: e428d093132752044a7328f86334afd9, type: 2}
+  positionData: {fileID: 11400000, guid: 5025138a53f85b942968770816aac0b7, type: 2}
+  updateRectData: 0
 --- !u!114 &1006753727
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -42,8 +42,8 @@ namespace EasyHealthSystem {
 
             int x0 = (int)(rectTransform.rect.width * fill);
             int y0 = 0;
-            int x1 = (int)(rectTransform.rect.width * fill); ;
-            int y1 = (int)(rectTransform.rect.height); ;
+            int x1 = (int)(rectTransform.rect.width * fill);
+            int y1 = (int)(rectTransform.rect.height);
             Color c = Color.white;
             
             for (int i = 0; i < widht; i++)
@@ -52,8 +52,8 @@ namespace EasyHealthSystem {
 
         static void DrawLine(Texture2D tex, int x0, int y0, int x1, int y1, Color col)
         {
-            int dy = (int)(y1 - y0);
-            int dx = (int)(x1 - x0);
+            int dy = y1 - y0;
+            int dx = x1 - x0;
             int stepx, stepy;
 
             if (dy < 0) { dy = -dy; stepy = -1; }
@@ -63,7 +63,7 @@ namespace EasyHealthSystem {
             dy <<= 1;
             dx <<= 1;
 
-            float fraction = 0;
+            float fraction;
 
             tex.SetPixel(x0, y0, col);
             if (dx > dy)

@@ -64,8 +64,15 @@ namespace EasyHealthSystem
         {
             Debug.LogFormat("update value: {0}", value);
 
-            this.currentValue = value;
+            currentValue = value;
             ResizeBar();
+        }
+        
+        public void SetupData(BarRectTransformData positionData)
+        {
+            positionData.SetTransform(GetComponent<RectTransform>());
+            if (positionData.Color.HasValue)
+            barImage.color = positionData.Color.Value;
         }
     }
 }

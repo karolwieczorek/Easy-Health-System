@@ -2,7 +2,8 @@
 using System.Linq;
 using UnityEngine;
 
-namespace EasyHealthSystem.Example {
+namespace EasyHealthSystem.Example 
+{
     public class FollowPoints : MonoBehaviour {
 
         [SerializeField] Transform target;
@@ -24,14 +25,14 @@ namespace EasyHealthSystem.Example {
             Move();
             if (target.position == nextPoint.position)
                 nextPoint = GetNextPoint();
-        } 
+        }
 
-        private void Move()
+        void Move()
         {
             target.position = Vector3.MoveTowards(target.position, nextPoint.position, speed * Time.deltaTime);
         }
 
-        private Transform GetNextPoint()
+        Transform GetNextPoint()
         {
             var index = points.IndexOf(nextPoint);
             var nextIndex = index+1;

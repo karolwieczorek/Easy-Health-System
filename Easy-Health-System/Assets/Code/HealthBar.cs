@@ -34,11 +34,11 @@ namespace EasyHealthSystem {
 
         void Init(Transform target, float maxHealth, Color? color) 
         {
-            this.currentValue = maxHealth;
-            this.maxValue = maxHealth;
+            currentValue = maxHealth;
+            maxValue = maxHealth;
             this.target = target;
 
-            barLines.UpdateBar(valuePerLine / (float) maxHealth);
+            barLines.UpdateBar(valuePerLine / maxHealth);
             
             if (color.HasValue)
                 barImage.color = color.Value;
@@ -48,7 +48,7 @@ namespace EasyHealthSystem {
 
         void ResizeBar()
         {
-            barImage.fillAmount = currentValue / (float)maxValue;
+            barImage.fillAmount = currentValue / maxValue;
         }
 
         void UpdateHealth(int health)
@@ -58,13 +58,13 @@ namespace EasyHealthSystem {
             {
                 Destroy(gameObject);
             }
-            this.currentValue = health;
+            currentValue = health;
             ResizeBar();
         }
 
         void UpdateHealth(float health) 
         {
-            this.currentValue = health;
+            currentValue = health;
             ResizeBar();
         }
 

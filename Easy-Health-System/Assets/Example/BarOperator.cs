@@ -8,16 +8,20 @@ namespace EasyHealthSystem.Example
     public class BarOperator : MonoBehaviour
     {
         public Bar barSource;
+        public bool followTarget; 
         public RectTransform parentRectTransformSource;
         public BarsAssetsData barsAssetsData;
 
+        [SerializeField] BarRectTransformData positionData;
+        public bool updateRectData;
+
         UnityAction<float> onBarValueChanged = delegate { };
         IHealthUpdate target;
-        
-        MovingBar bar;
-        RectTransform parent;
-        
-        MovingBar TargetBar
+
+        Bar bar;
+        Bar parent;
+
+        Bar TargetBar
         {
             get
             {
@@ -25,7 +29,6 @@ namespace EasyHealthSystem.Example
                     bar = CreateBar();
                 return bar;
             }
-            set { bar = value; }
         }
 
         void OnValidate()
@@ -39,8 +42,6 @@ namespace EasyHealthSystem.Example
             return barSource.gameObject.IsPrefab();
         }
 
-        
-
         void Start()
         {
             InitBar();
@@ -48,22 +49,53 @@ namespace EasyHealthSystem.Example
             target.HealthUpdated += HealthUpdated;
         }
 
-        float maxHealth = 0;
+        float maxHealth;
         void HealthUpdated(float health, float maxHealth)
         {
             if (Mathf.Approximately(this.maxHealth, maxHealth) == false)
             {
                 this.maxHealth = maxHealth;
-                TargetBar.Init(transform, ref onBarValueChanged, maxHealth, Color.green);
+                InitBar();
             }
 
             onBarValueChanged(health);
         }
 
+        void LateUpdate()
+        {
+            if (updateRectData && positionData != null)
+                TargetBar.SetupData(positionData);
+            
+            if (followTarget)
+                FollowTarget();
+        }
+
+        void FollowTarget()
+        {
+            if (bar == null)
+                return;
+
+            var offset = Vector3.zero;
+            if (positionData != null)
+                offset = positionData.anchoredPosition;
+
+            var position = transform.position + offset;
+
+            if (bar.GetComponentInParent<Canvas>().renderMode == RenderMode.WorldSpace)
+                bar.transform.position = position;
+            else
+            {
+                Vector3 barPos = Camera.main.WorldToScreenPoint(position);
+                bar.transform.position = barPos;
+            }
+        }
+
         [UsedImplicitly]
         public void InitBar()
         {
-            TargetBar.Init(transform, ref onBarValueChanged, maxHealth, Color.green);
+            TargetBar.Init(maxHealth, ref onBarValueChanged, Color.green);
+            if (positionData != null)
+                TargetBar.SetupData(positionData);
         }
 
         MovingBar CreateBar()

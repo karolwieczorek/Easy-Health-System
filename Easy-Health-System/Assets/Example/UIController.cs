@@ -23,7 +23,7 @@ namespace EasyHealthSystem.Example
         [UsedImplicitly]
         public void InitValues()
         {
-            float maxHealthValue = 200f;
+            float maxHealthValue;
             if (float.TryParse(maxHealthValueInput.text, out maxHealthValue))
             {
                 Debug.LogFormat("text: {0}, value: {1}", maxHealthValueInput.text, maxHealthValue);
@@ -36,7 +36,7 @@ namespace EasyHealthSystem.Example
             damageInput.text = 10.ToString();
             healInput.text = 10.ToString();
             maxHealthValueInput.text = 50.ToString();
-            valuePerLineInput.text = 50f.ToString();
+            valuePerLineInput.text = 50.ToString();
         }
 
         [UsedImplicitly]
